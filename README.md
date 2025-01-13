@@ -1,4 +1,4 @@
-# Single-cell perturbation effects prediciton benchmark
+# scPerturBench, Single-cell perturbation effects prediciton benchmark
 ## Introduction
 Various computational methods have been developed to predict perturbation effects, while despite claims of promising performance, great concerns on the true efficacy of these models have been raised, particularly when evaluated across diverse unseen cellular contexts and unseen perturbations. To this end, a comprehensive benchmark of 21 single cell perturbation response prediction methods including genetic and chemical perturbations, with 29 datasets for the method generalizations in unseen cellular contexts and unseen perturbations, using different evaluation metrics, were conducted. Tips regarding the method limitations, method generalizations and method selections were presented. Finally, an applicable solution by leveraging prior knowledge through cellular context embedding to achieve improved model generalization in new cellular context is presented. 
 
@@ -40,6 +40,19 @@ All benchmark methods analyzed in SCMMIB study are listed below. Details of thes
 | [scFoundation](https://github.com/biomap-research/scFoundation)                               | [Nature Methods](https://www.nature.com/articles/s41592-024-02305-7)              | 2024 |
 | [chemCPA](https://github.com/theislab/chemCPA)                                  | [arXiv](https://arxiv.org/abs/2204.13545)              | 2022 |
 | [scouter](https://github.com/PancakeZoy/scouter)                              | [bioRxiv](https://doi.org/10.1101/2024.12.06.627290)       | 2024 |
+
+## Benchmark DataSets
+We have uploaded all benchmark datasets to Figshare and Zenodo, which can be obtained from [Figshare-Cellular](https://doi.org/10.6084/m9.figshare.28143422), [Figshare-Perturbation](https://doi.org/10.6084/m9.figshare.28147883), [Zenodo-Cellular](https://doi.org/10.5281/zenodo.14607156) and [Zenodo-perturbation](https://doi.org/10.5281/zenodo.14607156).
+
+
+## Citation
+Zhiting Wei, Yiheng Wang, Yicheng Gao, Qi Liu et al. Tips and solutions for generalizable single-cell perturbation response prediction gained from a systematic benchmark, submitted, 2025.
+## Contacts
+bm2-lab@tongji.edu.cn, 1810546@tongji.edu.cn
+
+
+
+
 
 
 
