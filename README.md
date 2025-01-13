@@ -3,7 +3,7 @@
 Various computational methods have been developed to predict perturbation effects, while despite claims of promising performance, great concerns on the true efficacy of these models have been raised, particularly when evaluated across diverse unseen cellular contexts and unseen perturbations. To this end, a comprehensive benchmark of 21 single cell perturbation response prediction methods including genetic and chemical perturbations, with 29 datasets for the method generalizations in unseen cellular contexts and unseen perturbations, using different evaluation metrics, were conducted. Tips regarding the method limitations, method generalizations and method selections were presented. Finally, an applicable solution by leveraging prior knowledge through cellular context embedding to achieve improved model generalization in new cellular context is presented. 
 
 ## Workflow
-![Workflow](imgs/Workflow.pdf)
+![Workflow](imgs/Figure 1.pdf)
 
 
 # Cellular transfer scenario
