@@ -14,7 +14,7 @@ In the cellular context generalization scenario, we evaluate the prediction of k
 In the perturbation generalization scenario, we assess the ability of models to predict the effects of previously unobserved perturbations within a specific cellular context. Depending on the type of perturbation, this scenario can be further divided into two categories: genetic perturbation effects prediction and chemical perturbation effects prediction. (1) Genetic perturbation effect prediction. (2) Chemical perturbation effect prediction. [Genetic](https://github.com/bm2-lab/scPerturBench/tree/main/Perturbation_generalization/Genetic) contained the script used in the genetic setting. [Chemical](https://github.com/bm2-lab/scPerturBench/tree/main/Perturbation_generalization/Chemical) contained the script used in the chemical setting. [calPerformance](https://github.com/bm2-lab/scPerturBench/tree/main/Perturbation_generalization/calPerformance.py) and [Utils](https://github.com/bm2-lab/scPerturBench/tree/main/Perturbation_generalization/Util1.py) is the script for performance calculation and generic function。
 
 ## Benchmark datasets summary
-All datasets analyzed in our study are listed in the [Workflow](imgs/fig1_v3.png). The processed datasets are available in a public Figshare repostiory [link](https://figshare.com/articles/dataset/SCMMIB_Register_Report_Stage_2_processed_datasets/27161451/1).
+All datasets analyzed in our study are listed in the [Workflow](imgs/fig1_v3.png). We have uploaded all benchmark datasets to Figshare and Zenodo, which can be obtained from [Figshare-Cellular](https://doi.org/10.6084/m9.figshare.28143422), [Figshare-Perturbation](https://doi.org/10.6084/m9.figshare.28147883), [Zenodo-Cellular](https://doi.org/10.5281/zenodo.14607156) and [Zenodo-perturbation](https://doi.org/10.5281/zenodo.14607156).
 
 ## Benchmark Methods
 All benchmark methods analyzed in SCMMIB study are listed below. Details of these methods were available in our Register Report Stage 1 manuscript in [figshare folder](https://springernature.figshare.com/articles/journal_contribution/Benchmarking_single-cell_multi-modal_data_integrations/26789572).
@@ -40,9 +40,6 @@ All benchmark methods analyzed in SCMMIB study are listed below. Details of thes
 | [scFoundation](https://github.com/biomap-research/scFoundation)                               | [Nature Methods](https://www.nature.com/articles/s41592-024-02305-7)              | 2024 |
 | [chemCPA](https://github.com/theislab/chemCPA)                                  | [arXiv](https://arxiv.org/abs/2204.13545)              | 2022 |
 | [scouter](https://github.com/PancakeZoy/scouter)                              | [bioRxiv](https://doi.org/10.1101/2024.12.06.627290)       | 2024 |
-
-## Benchmark DataSets
-We have uploaded all benchmark datasets to Figshare and Zenodo, which can be obtained from [Figshare-Cellular](https://doi.org/10.6084/m9.figshare.28143422), [Figshare-Perturbation](https://doi.org/10.6084/m9.figshare.28147883), [Zenodo-Cellular](https://doi.org/10.5281/zenodo.14607156) and [Zenodo-perturbation](https://doi.org/10.5281/zenodo.14607156).
 
 
 ## Citation
