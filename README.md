@@ -20,7 +20,7 @@ We posit that improving generalization in the cellular context generalization sc
 ## Benchmark datasets summary
 All datasets analyzed in our study are listed in the [Workflow](imgs/fig1_v3.png). We have uploaded all benchmark datasets to Figshare and Zenodo, which can be obtained from [Figshare-Cellular](https://doi.org/10.6084/m9.figshare.28143422), [Figshare-Perturbation](https://doi.org/10.6084/m9.figshare.28147883), [Zenodo-Cellular](https://doi.org/10.5281/zenodo.14607156) and [Zenodo-perturbation](https://10.5281/zenodo.14638779).
 
-## Benchmark Methods
+## Benchmark methods
 All benchmark methods analyzed in our study are listed below. Details of the setting were available in our manuscript. 
 
 | Method                                                                         | Article                                                                   | Time |Title |
