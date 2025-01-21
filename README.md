@@ -15,12 +15,15 @@ In the perturbation generalization scenario, we assess the ability of models to 
 ## bioLord-emCell
 We posit that improving generalization in the cellular context generalization scenario requires models to effectively capture the heterogeneity in perturbation responses across cellular contexts. This can be achieved in one of two main ways: (1) training on large-scale, diverse datasets to directly learn heterogeneity or (2) leveraging existing prior knowledge. Given the scarcity of large-scale cellular perturbation datasets, the second approach is more feasible.Therefore, we propose a generalizable and applicable framework to improve model generalizability across different cellular contexts via cell line embedding and disentanglement representation. [bioLord-emCell](https://github.com/bm2-lab/scPerturBench/tree/main/bioLord-emCell) contained the script we used to implement our framework. 
 
-We recommend using Anaconda / Miniconda to create a conda environment for using biolord-emCell. You can create a python environment using the following command:
+We use sciplex3 dataset as a demo case to run biolord-emCell. We recommend using Anaconda / Miniconda to create a conda environment for using biolord-emCell. You can create a python environment using the following command:
 ```python
 conda env create -f environment.yml
 ```
 
 
+```
+python  biolord_enhanced_train_and_test.py
+```
 
 
 
