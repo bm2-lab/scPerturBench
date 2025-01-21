@@ -22,7 +22,7 @@ conda env create -f environment.yml
 
 
 ```
-python  biolord_enhanced_train_and_test.py
+python  biolord-emCell.py
 ```
 
 
