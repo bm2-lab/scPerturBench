@@ -25,8 +25,7 @@ conda env create -f environment.yml
 python  biolord-emCell.py
 ```
 
-
-
+sciplex3_cell_embs.pkl was obtained by Get_embedding.py  
 For more details, please refer to our manuscript.
 
 
