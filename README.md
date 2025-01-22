@@ -26,7 +26,7 @@ python  biolord-emCell.py
 ```
 
 sciplex3_cell_embs.pkl was obtained by Get_embedding.py  
-For more details, please refer to our manuscript.
+For more details, please refer to our manuscript and [scGPT](https://github.com/bowang-lab/scGPT) tutorial.
 
 
 
