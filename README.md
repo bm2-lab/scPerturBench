@@ -36,7 +36,7 @@ All datasets analyzed in our study are listed in the [Workflow](imgs/fig1.png). 
 ## Benchmark methods
 All benchmark methods analyzed in our study are listed below. Details of the setting were available in our manuscript. 
 
-| Method                                                                         | Article                                                                   | Time |Title |
+| Method                                                                         | Article                                                                   | Time |Title |Version |
 |-----------------------------------------|-------------------------------------|------| -------------------------------------| 
 | [bioLord](https://github.com/nitzanlab/biolord)                               | [Nature Biotechnology](https://www.nature.com/articles/s41587-023-02079-x)        | 2024 |Disentanglement of single-cell data with biolord|
 | [CellOT](https://github.com/bunnech/cellot)                            | [Nature Methods](https://www.nature.com/articles/s41592-023-01969-x)                        | 2023 |Learning single-cell perturbation responses using neural optimal transport|
