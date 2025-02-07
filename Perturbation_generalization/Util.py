@@ -15,6 +15,11 @@ from collections import defaultdict, OrderedDict
 import warnings
 warnings.filterwarnings('ignore')
 
+
+### manuscript related to data preparation
+
+
+
 multiprocessing.set_start_method('spawn', force=True)
 # def myPool(func, mylist, processes):
 #     with Pool(processes) as pool:
@@ -44,10 +49,10 @@ def transID(adata, species):
     else:
         dat.set_index('SYMBOL', inplace=True)
     dat = dat[~dat.index.duplicated()]
-    #df, adata_var = dat.align(adata.var, join="inner", axis=0) ##
+    #df, adata_var = dat.align(adata.var, join="inner", axis=0)
     #adata = adata[:, adata_var.index]
     #adata.var = adata.var.merge(df, left_index=True, right_index=True)
-    adata.var = pd.merge(adata.var, dat, left_index=True, right_index=True,how='left') ###
+    adata.var = pd.merge(adata.var, dat, left_index=True, right_index=True,how='left')
     if adata.var_names[0].startswith('ENS'):
         adata.var['ENSEMBL'] = adata.var.index
         adata.var.set_index('SYMBOL', inplace=True)
@@ -78,8 +83,8 @@ def preData(adata, filterNone=True, minNums = 30, filterCom=False, mtpercent = 1
     adata = adata[adata.obs.pct_counts_mt < mtpercent, :]
     filterMT = adata.shape[0]
     tmp = adata.obs['perturbation'].value_counts()
-    tmp_bool = tmp >= minNums          ###
-    genes = list(tmp[tmp_bool].index)  ###
+    tmp_bool = tmp >= minNums    
+    genes = list(tmp[tmp_bool].index)
     if 'control' not in genes: genes += ['control']
     adata = adata[adata.obs['perturbation'].isin(genes), :]
     filterMinNums = adata.shape[0]
@@ -142,7 +147,7 @@ def calDEG(DataSet = 'kang_pbmc', hvg=5000):
             final_result = pd.DataFrame({key: result[key][perturbation] for key in ['names', 'pvals_adj', 'logfoldchanges', 'scores']})
             tmp1 = 'foldchanges'
             tmp2 = 'logfoldchanges'
-            final_result[tmp1] = 2 ** final_result[tmp2]   ###
+            final_result[tmp1] = 2 ** final_result[tmp2]
             final_result.drop(labels=[tmp2], inplace=True, axis=1)
             final_result.set_index('names', inplace=True)
             final_result['abs_scores'] = np.abs(final_result['scores'])
