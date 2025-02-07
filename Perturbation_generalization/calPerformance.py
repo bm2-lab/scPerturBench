@@ -38,7 +38,7 @@ def f_subSample(adata, n_samples = 2000, control_tag='control'):
             sampled_indices = np.random.choice(adata.n_obs, n_samples, replace=False)
             adata_sampled = adata[sampled_indices, :]
             return adata_sampled
-    np.random.seed(42)  ### 设置种子，使得结果具有可重复性
+    np.random.seed(42)  ### set seed
     adata_imputed = adata[adata.obs['Expcategory'] ==  "imputed"]
     adata_imputed = subSample(adata_imputed, n_samples)
 
@@ -53,10 +53,8 @@ def f_subSample(adata, n_samples = 2000, control_tag='control'):
 
 class SuppressOutput:
     def __enter__(self):
-        # 保存当前的标准输出
         self._stdout = sys.stdout
         self._stderr = sys.stderr
-        # 将标准输出和标准错误输出重定向到/dev/null
         sys.stdout = open(os.devnull, 'w')
         sys.stderr = open(os.devnull, 'w')
 
@@ -82,23 +80,23 @@ def calPerfor(X):
         a = adata[(adata.obs[condition_column] == perturb) & (adata.obs['Expcategory'] == "stimulated")].shape[0]
         b = adata[(adata.obs[condition_column] == perturb) & (adata.obs['Expcategory'] == "imputed")].shape[0]
         if a ==0 or b == 0: return
-        adata = adata[adata.obs[condition_column].isin([control_tag, perturb])]  ### 保留该扰动信息
+        adata = adata[adata.obs[condition_column].isin([control_tag, perturb])]
         DegList = getDEG(DataSet, perturb, numDEG)
-        DegList = [i for i in DegList if i in adata.var_names]  #### scFoundation存在少量差异
+        DegList = [i for i in DegList if i in adata.var_names]
         adata = adata[:, DegList]
         adata = checkNan(adata, condition_column, control_tag)
         adata = calculateDelta(adata)
         adata.layers['X'] = adata.X
         if doSubSample: adata_subSample = f_subSample(adata, 2000, control_tag)
         for metric in chain(metrics):
-            if metric == 'wasserstein' and numDEG == 5000: continue  #### 推土机距离5000维度会报错
+            if metric == 'wasserstein' and numDEG == 5000: continue
             try:
                 with SuppressOutput():
                     Distance = pt.tools.Distance(metric=metric,  layer_key='X')
                     if doSubSample and metric in ['edistance', 'wasserstein', 'mmd']:
-                        pairwise_df = Distance.onesided_distances(adata_subSample, groupby="Expcategory", selected_group='imputed', groups=["stimulated"])  ###
+                        pairwise_df = Distance.onesided_distances(adata_subSample, groupby="Expcategory", selected_group='imputed', groups=["stimulated"])
                     else:
-                        pairwise_df = Distance.onesided_distances(adata, groupby="Expcategory", selected_group='imputed', groups=["stimulated"])  ### 已经转换好了，不需要1-pairwise_df进行转换
+                        pairwise_df = Distance.onesided_distances(adata, groupby="Expcategory", selected_group='imputed', groups=["stimulated"])
                     perf = round(pairwise_df['stimulated'], 4)
             except Exception as e:
                 print (e)
@@ -146,14 +144,14 @@ def ff_calPerfor(DataSet, condition_column = 'perturbation', control_tag = 'cont
         for seed in seeds:
             for method in addMethods:
                 mylist_parameter.append([DataSet, method, seed, condition_column, control_tag])
-        results = myPool(f_calPerfor, mylist_parameter, processes=3)   ### 适当设置
+        results = myPool(f_calPerfor, mylist_parameter, processes=3)
         results = pd.concat(results + [dat])
         results.to_csv(fileout, sep='\t', index=False)
     else:
         for seed in seeds:
             for method in methods:
                 mylist_parameter.append([DataSet, method, seed, condition_column, control_tag])
-        results = myPool(f_calPerfor, mylist_parameter, processes=3)   ### 适当设置
+        results = myPool(f_calPerfor, mylist_parameter, processes=3)
         results = pd.concat(results)
         results.to_csv(fileout, sep='\t', index=False)
 
@@ -163,20 +161,20 @@ def UMPAPlot(X):
     os.chdir('/home/wzt/project/Pertb_benchmark/DataSet/{}/outSample/hvg5000/{}/{}'.format(DataSet, method, outSample))
     if not os.path.isdir('figures'): os.makedirs('figures')
     filein = '{}_imputed.h5ad'.format(perturb)
-    if not os.path.isfile(filein): return   ####  这个病人没有该扰动的真实值
+    if not os.path.isfile(filein): return
     fileout1 = '_{}.pdf'.format(perturb)
     fileout2 = '_{}_deg.pdf'.format(perturb)
-    if os.path.isfile('figures/{}'.format(fileout1)) and os.path.isfile('figures/{}'.format(fileout2)): return  #### 有文件不跑
+    if os.path.isfile('figures/{}'.format(fileout1)) and os.path.isfile('figures/{}'.format(fileout2)): return
     adata = sc.read_h5ad(filein)
     adata = checkNan(adata)
-    if method in ['bioLord', 'biolord', 'scDisInFact']:  ### 删除多余的预测数据
+    if method in ['bioLord', 'biolord', 'scDisInFact']:
         try:
             adata_control = adata[adata.obs['perturbation'] == 'control']
             adata = ad.concat([adata_control, adata])
         except Exception as e:
             print (e)
     if doSubSample: adata_subSample = f_subSample(adata, n_samples=2000)
-    DEGlist = getDEG(DataSet, 5000, outSample, perturb, 100)   #### 差异基因100个
+    DEGlist = getDEG(DataSet, 5000, outSample, perturb, 100)
     adata_deg = adata_subSample[:, DEGlist].copy()
 
     sc.tl.pca(adata_subSample)
@@ -208,25 +206,22 @@ def f_UMPAPlot(DataSet):
 
 #### conda activate pertpyV7
 doSubSample = True
-classI = ["mse", "mmd", "euclidean", "edistance",  "mean_absolute_error"]  #### ks_test, t-test受到预测细胞数量的影响
-classII = ["cosine_distance", "pearson_distance", "r2_distance", ]  ####  classifier_proba 在所有数据都差不多
-classIII = ['spearman_distance', 'wasserstein']  ### typeIII本身不建议作为metric, 但是先计算出来看看
+classI = ["mse", "mmd", "euclidean", "edistance",  "mean_absolute_error"]  #### ks_test, t-test
+classII = ["cosine_distance", "pearson_distance", "r2_distance", ]  #### type II metric
+classIII = ['spearman_distance', 'wasserstein']  ### type III metric
 control_list = ['control', 'MCF7_control_1.0', 'A549_control_1.0', 'K562_control_1.0']
 
 metrics = (classI + classII + classIII)
-metrics = ['mse', 'pearson_distance', 'edistance']  ###
+metrics = ['mse', 'pearson_distance', 'edistance']
 seeds = [1, 2, 3]
 numDEG_list = [100, 5000]
 
-methods= ['scGPT', 'GEARS', 'AttentionPert', 'GenePert', 'linearModel', 'trainMean', 'controlMean', 'CPA', 'bioLord', 'scFoundation', 'scouter'] ##  'STAMP'
+methods= ['scGPT', 'GEARS', 'AttentionPert', 'GenePert', 'linearModel', 'trainMean', 'controlMean', 'CPA', 'bioLord', 'scFoundation', 'scouter']
 #methods= ['CPA', 'chemCPA', 'bioLord', 'trainMean', 'controlMean']
 #methods= ['CPA', 'trainMean', 'controlMean']
 
 cmd = 'export OPENBLAS_NUM_THREADS=20'; subprocess.call(cmd, shell=True)
 cmd = 'export JAX_PLATFORMS=cpu'; subprocess.call(cmd, shell=True)
-
-### export OPENBLAS_NUM_THREADS=20, export JAX_PLATFORMS=cpu 跑之前先设置这个
-
 
 SinglePertDataSets = ['Adamson', "Frangieh", "TianActivation", "TianInhibition", "Replogle_exp7", "Replogle_exp8", "Papalexi", "Replogle_RPE1essential", "Replogle_K562essential"]
 CombPertDataSets = ['Norman', 'Wessels', 'Schmidt', "Replogle_exp6"]
