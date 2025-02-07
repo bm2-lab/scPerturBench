@@ -21,6 +21,9 @@ def clean_condition(condition):
     return condition.replace('+ctrl', '').replace('ctrl+', '').strip()
 
 
+### util scripts used in perturbation generalization scenario
+
+
 
 multiprocessing.set_start_method('spawn', force=True)
 # def myPool(func, mylist, processes):
@@ -46,7 +49,7 @@ def subSample(adata, n_samples):
 def preData(adata, domaxNumsPerturb=0, domaxNumsControl=0, minNums = 50, min_cells= 10):
     adata.var_names.astype(str)
     adata.var_names_make_unique()
-    adata = adata[~adata.obs.index.duplicated()] ###
+    adata = adata[~adata.obs.index.duplicated()]
     adata = adata[adata.obs["perturbation"] != "None"]
     filterNoneNums = adata.shape[0]
     sc.pp.filter_cells(adata, min_genes= 200)
@@ -64,8 +67,8 @@ def preData(adata, domaxNumsPerturb=0, domaxNumsControl=0, minNums = 50, min_cel
         adata = adata[adata.obs.pct_counts_mt < 10, :]
     filterMT = adata.shape[0]
     tmp = adata.obs['perturbation'].value_counts()
-    tmp_bool = tmp >= minNums          ###去除细胞数量太少的扰动
-    genes = list(tmp[tmp_bool].index)  ###
+    tmp_bool = tmp >= minNums
+    genes = list(tmp[tmp_bool].index)
     if 'control' not in genes: genes += ['control']
     adata = adata[adata.obs['perturbation'].isin(genes), :]
     filterMinNums = adata.shape[0]
@@ -87,8 +90,8 @@ def preData(adata, domaxNumsPerturb=0, domaxNumsControl=0, minNums = 50, min_cel
         adata2 = adata[adata.obs['perturbation'] != 'control']
         adata1 = subSample(adata1, domaxNumsControl)
         adata = ad.concat([adata1, adata2])
-        adata.var = adata1.var.copy()   ####
-
+        adata.var = adata1.var.copy()
+        
     adata.layers['counts'] = adata.X.copy()
     sc.pp.normalize_total(adata, target_sum=1e4)
     sc.pp.log1p(adata)
@@ -102,7 +105,7 @@ def preData(adata, domaxNumsPerturb=0, domaxNumsControl=0, minNums = 50, min_cel
 
     sc.pp.highly_variable_genes(adata, n_top_genes=5000, subset=False)
     adata.var['highly_variable_5000'] = adata.var['highly_variable']
-    adata = adata[adata.obs.sort_values(by='perturbation').index,:]  ### 排序
+    adata = adata[adata.obs.sort_values(by='perturbation').index,:]
     return filterNoneNums, filterCells, filterMT, filterMinNums, adata
 
 
@@ -115,7 +118,7 @@ def calDEG(DataSet = 'Adamson', condition_column = 'perturbation', control_tag =
     adata = sc.read_h5ad(filein)
     adata.uns['log1p'] = {}
     adata.uns['log1p']['base'] = None
-    #adata.X += .1   #### 除了foldchange, 其它相差很小
+    #adata.X += .1
     mydict = defaultdict(dict)
     perturbations = adata.obs[condition_column].unique()
     perturbations = [i for i in perturbations if i != control_tag]
@@ -125,7 +128,7 @@ def calDEG(DataSet = 'Adamson', condition_column = 'perturbation', control_tag =
         final_result = pd.DataFrame({key: result[key][perturbation] for key in ['names', 'pvals_adj', 'logfoldchanges', 'scores']})
         tmp1 = 'foldchanges'
         tmp2 = 'logfoldchanges'
-        final_result[tmp1] = 2 ** final_result[tmp2]   ### logfoldchange 转换为 foldchange
+        final_result[tmp1] = 2 ** final_result[tmp2]
         final_result.drop(labels=[tmp2], inplace=True, axis=1)
         final_result.set_index('names', inplace=True)
         final_result['abs_scores'] = np.abs(final_result['scores'])
@@ -138,12 +141,10 @@ def calDEG(DataSet = 'Adamson', condition_column = 'perturbation', control_tag =
         pickle.dump(mydict, fout)
 
 
-
-#### 根据seed，扰动获得标签
 def getAnnotation_drug(seeds):
     myNeeddict = defaultdict(dict)
     for seed in seeds:
-        filein = 'hvg5000/GEARS/data/train/splits/train_simulation_{}_0.8_subgroup.pkl'.format(seed + 3) #### comb采用seeds 4, 5, 6进行分割
+        filein = 'hvg5000/GEARS/data/train/splits/train_simulation_{}_0.8_subgroup.pkl'.format(seed + 3)
         with open(filein, 'rb') as fin:
             splits = pickle.load(fin)['test_subgroup']
         for splits_key in ['combo_seen0', 'combo_seen1', 'combo_seen2', 'unseen_single']:
@@ -162,7 +163,7 @@ def getAnnotation_genetic(seeds):
                 myNeeddict[str(seed)][clean_condition(tmp)] = splits_key
     return myNeeddict
 
-### 对drug的performance combination加上具体的注释
+###  chemical  performance combination  add annotation
 def f_addAnnotation_chemical_comb(DataSet, senario='notDelta'):
     splits_dict = defaultdict()
     dirName = '/home/wzt/project/Pertb_benchmark/DataSet2/{}'.format(DataSet)
