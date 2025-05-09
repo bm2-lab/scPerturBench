@@ -59,7 +59,8 @@ All benchmark methods analyzed in our study are listed below. Details of the set
 | [scouter](https://github.com/PancakeZoy/scouter)                              | [bioRxiv](https://doi.org/10.1101/2024.12.06.627290)       | 2024 |Scouter: Predicting Transcriptional Responses to Genetic Perturbations with LLM embeddings|0.0.1|
 | [scELMo](https://github.com/HelloWorldLTY/scELMo)                              | [bioRxiv](https://arxiv.org/abs/2004.13214)       | 2024 |scELMo: Embeddings from Language Models are Good Learners for Single-cell Data Analysis|0.0.1|
 | [GeneCompass](https://github.com/xCompass-AI/geneCompass)                              | [Cell Research](https://www.nature.com/articles/s41422-024-01034-y)       | 2024 |GeneCompass: deciphering universal gene regulatory mechanisms with a knowledge-informed cross-species foundation model|0.0.1|
-
+| [cycleCDR](https://github.com/hliulab/cycleCDR)                              | [bioRxiv](https://doi.org/10.1093/bioinformatics/btae248)       | 2024 |Predicting single-cell cellular responses to perturbations using cycle consistency learning|0.0.1|
+| [PRnet](https://github.com/Perturbation-Response-Prediction/PRnet)                              | [Nature communication](https://www.nature.com/articles/s41467-024-53457-1)       | 2024 |Predicting transcriptional responses to novel chemical perturbations using deep generative model for drug discovery|0.0.1|
 
 ## Citation
 Zhiting Wei, Yiheng Wang, Yicheng Gao, Qi Liu et al. Recommendations and solutions for generalizable single-cell perturbation response prediction obtained from a systematic benchmark, submitted, 2025.
