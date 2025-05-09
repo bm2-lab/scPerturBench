@@ -29,6 +29,19 @@ sciplex3_cell_embs.pkl was obtained by Get_embedding.py
 For more details, please refer to our manuscript and [scGPT](https://github.com/bowang-lab/scGPT) tutorial.
 
 
+## scPerturBench reproducibility
+To facilitate the community in three key ways—(1) reproducing our work more easily, (2) visualizing the benchmark results more intuitively, and (3) more importantly, comparing the performance of newly developed tools with those included in our benchmark—we have taken two major steps:
+
+(1) Podman image for full reproducibility:
+We have packaged all the major benchmark scripts, conda environments, and dependencies used in our study into a Podman image, a modern, rootless alternative to Docker. This image allows users to effortlessly reproduce the results presented in our study without manually installing any dependencies. It also comes pre-installed with most of the commonly used tools in the single-cell perturbation analysis field, including pertpy, scanpy, and torch, making it a convenient platform for both end users and tool developers.
+
+(2) Interactive website for result visualization:
+We have developed a web interface that visualizes the key results of all tools included in our benchmark. The website allows users to explore and download the raw outputs of each method. Furthermore, if a developer evaluates their own tool using the same evaluation metrics defined in our paper, they can easily compare its performance with existing methods. The website is available at: [XXX].
+
+Below, we provide detailed instructions on how to use the Podman image to reproduce our benchmark results.
+
+
+
 
 ## Benchmark datasets summary
 All datasets analyzed in our study are listed in the [Workflow](imgs/fig1.png). We have uploaded all benchmark datasets to Figshare and Zenodo, which can be obtained from [Figshare-Cellular](https://doi.org/10.6084/m9.figshare.28143422), [Figshare-Perturbation](https://doi.org/10.6084/m9.figshare.28147883), [Zenodo-Cellular](https://doi.org/10.5281/zenodo.14607156) and [Zenodo-perturbation](https://10.5281/zenodo.14638779).
