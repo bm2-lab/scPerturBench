@@ -62,8 +62,32 @@ export OPENBLAS_NUM_THREADS=20
 export JAX_PLATFORMS=cpu
 python calPerformance.py
 ```
-- If you want to run other models on other datasets, just download the datasets from our Figshare and Zenedo, pleace it in the same folder of KangCrossCell and just change the `DataSet` paremeter in the corresponding scripts. Below, we list the environment needed by the models.
-- 
+- If you want to run other models on other datasets, just download the datasets from our Figshare and Zenedo, place it in the same folder of KangCrossCell and just change the `DataSet` paremeter in the corresponding scripts. Below, we list the environment needed by the models.
+| Method                                                                         |          Environment | 
+|-----------------------------------------|-------------------------------------|------| -------------------------------------| -------------------------------------| 
+| [biolord](https://github.com/nitzanlab/biolord)                               |  cpa  | 
+| [CellOT](https://github.com/bunnech/cellot)                            |  cellot                     | 
+| [inVAE](https://github.com/LiouCharlie/INVAE/)                           |   cpa       |
+| [scDisInFact](https://github.com/ZhangLabGT/scDisInFact)                             | cpa      |
+| [scGen](https://github.com/theislab/scgen)                                |  scarches        |
+| [scPRAM](https://github.com/jiang-q19/scPRAM)                                          |  cpa             |
+| [scPreGAN](https://github.com/XiajieWei/scPreGAN)                             |  cpa       | 2022
+| [SCREEN](https://github.com/Califorya/SCREEN) |  cpa        | 2024 |
+| [scVIDR](https://github.com/BhattacharyaLab/scVIDR)                                        | scVIDR      | 
+| [trVAE](https://github.com/theislab/trVAE)                                        |  cpa    | 
+| [AttentionPert](https://github.com/BaiDing1234/AttentionPert)                        |  gears       | 
+| [CPA](https://github.com/theislab/cpa)                                   |   cpa  |
+| [GEARS](https://github.com/snap-stanford/GEARS)                                     |  gears   |
+| [GenePert](https://github.com/zou-group/GenePert)                                    |  gears    |
+| [linearModel](https://github.com/const-ae/linear_perturbation_prediction-Paper)                            |  linearModel       | 
+| [scGPT](https://github.com/bowang-lab/scGPT)                                             |   scGPT            | 
+| [scFoundation](https://github.com/biomap-research/scFoundation)                               |   gears       | 
+| [chemCPA](https://github.com/theislab/chemCPA)                                  |  chemCPA      | 
+| [scouter](https://github.com/PancakeZoy/scouter)                              |   cpa  | 2024 
+| [scELMo](https://github.com/HelloWorldLTY/scELMo)                              |   gears     | 2024 
+| [GeneCompass](https://github.com/xCompass-AI/geneCompass)                              |   gears | 2024 
+| [cycleCDR](https://github.com/hliulab/cycleCDR)                              |    cpa     | 2024 |
+| [PRnet](https://github.com/Perturbation-Response-Prediction/PRnet)                              |   cpa  | 
 
 
 
