@@ -63,7 +63,7 @@ All benchmark methods analyzed in our study are listed below. Details of the set
 | [PRnet](https://github.com/Perturbation-Response-Prediction/PRnet)                              | [Nature communication](https://www.nature.com/articles/s41467-024-53457-1)       | 2024 |Predicting transcriptional responses to novel chemical perturbations using deep generative model for drug discovery|0.0.1|
 
 ## Citation
-Zhiting Wei, Yiheng Wang, Yicheng Gao, Qi Liu et al. Recommendations and solutions for generalizable single-cell perturbation response prediction obtained from a systematic benchmark, submitted, 2025.
+Zhiting Wei, Yiheng Wang, Yicheng Gao, Qi Liu et al. Benchmarking algorithms for generalizable single-cell perturbation response prediction, submitted, 2025.
 ## Contacts
 bm2-lab@tongji.edu.cn, 1810546@tongji.edu.cn
 
