@@ -44,11 +44,17 @@ Below, we provide detailed instructions on how to use the Podman image to reprod
 podman load -i  scperturbench_v1.tar
 podman  run -it --rm --device nvidia.com/gpu=all --security-opt=label=disable  scperturbench:latest
 ```
-- We created 10 separate conda environments to accommodate the different dependency requirements of various tools. In the container instantiated from this image, you can list the environments with
+- We created 10 separate conda environments to accommodate the different dependency requirements of various tools. In the container instantiated from this image, you can list the environments with the following command
 ```Bash
 conda env list
 ```
-<img width="683" alt="image" src="https://github.com/user-attachments/assets/c44b2d41-195f-4d22-b77b-cdf6b7f97ba1" />
+- In our image, we have preloaded three example datasets: kangCrossCell, Papalexi, and Sciplex3-A549. You can easily train the trVAE model on the kangCrossCell dataset with minimal setup, /home/project/Pertb_benchmark/manuscript1 directory contains the scripts related to cellular context generalization scenario, /home/project/Pertb_benchmark/manuscript2 contains the scripts related to perturbation generalization scenario, and /home/project/Pertb_benchmark/manuscript3 contains the scripts related to bioLord-emCell.
+```Bash
+conda activate cpa
+cd /home/project/Pertb_benchmark/manuscript1/ood
+python mytrVAE.py
+```
+
 
 
 
