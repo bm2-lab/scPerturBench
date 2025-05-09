@@ -48,7 +48,7 @@ podman  run -it --rm --device nvidia.com/gpu=all --security-opt=label=disable  s
 ```Bash
 conda env list
 ```
-- In our image, we have preloaded three example datasets: KangCrossCell, Papalexi, and Sciplex3-A549. /home/project/Pertb_benchmark/manuscript1 directory contains the scripts related to cellular context generalization scenario, /home/project/Pertb_benchmark/manuscript2 contains the scripts related to perturbation generalization scenario, and /home/project/Pertb_benchmark/manuscript3 contains the scripts related to bioLord-emCell. For example, you can easily train the trVAE model on the kangCrossCell dataset with minimal setup, 
+- In our image, we have preloaded three example datasets: KangCrossCell, Papalexi, and Sciplex3-A549. `/home/project/Pertb_benchmark/manuscript1` directory contains the scripts related to cellular context generalization scenario, `/home/project/Pertb_benchmark/manuscript2` contains the scripts related to perturbation generalization scenario, and `/home/project/Pertb_benchmark/manuscript3` contains the scripts related to bioLord-emCell. For example, you can easily train the `trVAE` model on the `KangCrossCell` dataset with minimal setup, 
 ```Bash
 conda activate cpa
 cd /home/project/Pertb_benchmark/manuscript1/ood
@@ -62,7 +62,7 @@ export OPENBLAS_NUM_THREADS=20
 export JAX_PLATFORMS=cpu
 python calPerformance.py
 ```
-- If you want to run other models on other datasets, just download the datasets from our Figshare and Zenedo, and just change the dataset paremeter in the corresponding scripts. Below, we list the environment needed by the models.
+- If you want to run other models on other datasets, just download the datasets from our Figshare and Zenedo, pleace it in the same folder of KangCrossCell and just change the `DataSet` paremeter in the corresponding scripts. Below, we list the environment needed by the models.
 - 
 
 
