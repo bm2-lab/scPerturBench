@@ -42,7 +42,7 @@ Below, we provide detailed instructions on how to use the Podman image to reprod
 - Download Podman images from [Figshare-Podman] or [Zenodo-Podman], then just load and run the image with
 ```Bash
 podman load -i  scperturbench_v1.tar
-podman  run -it --rm --device nvidia.com/gpu=all --security-opt=label=disable  scperturbench:latest
+podman  run -it --device nvidia.com/gpu=all --security-opt=label=disable scperturbench:latest
 ```
 - We created nine separate conda environments to accommodate the different dependency requirements of various tools. In the container instantiated from this image, you can list the environments with the following command
 ```Bash
