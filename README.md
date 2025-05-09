@@ -64,7 +64,7 @@ python calPerformance.py
 ```
 - If you want to run other models on other datasets, just download the datasets from our Figshare and Zenedo, place it in the same folder of KangCrossCell and just change the `DataSet` paremeter in the corresponding scripts. Below, we list the environment needed by the models.
 
-| Environment                                                                         | Softwate                                             |
+| Environment                                                                         | Software                                             |
 |-----------------------------------------|-------------------------------------|
 |  cpa | biolord,  inVAE, scDisInFact, scPRAM, scPreGAN, SCREEN, trVAE, CPA, scouter, cycleCDR, PRnet | 
 |  cellot | CellOT |
