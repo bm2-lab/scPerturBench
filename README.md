@@ -39,7 +39,7 @@ We have packaged all the major benchmark scripts, conda environments, and depend
 We have developed a web interface that visualizes the key results of all tools included in our benchmark. The website allows users to explore and download the raw outputs of each method. Furthermore, if a developer evaluates their own tool using the same evaluation metrics defined in our paper, they can easily compare its performance with existing methods. The website is available at: [XXX].
 
 Below, we provide detailed instructions on how to use the Podman image to reproduce our benchmark results.
-- Download Podman images from [Figshare-Podman] or [Zenodo-Podman], then just load and run the images with
+- Download Podman images from [Figshare-Podman] or [Zenodo-Podman], then just load and run the image with
 ```Bash
 podman load -i  scperturbench_v1.tar
 podman  run -it --rm --device nvidia.com/gpu=all --security-opt=label=disable  scperturbench:latest
@@ -48,13 +48,22 @@ podman  run -it --rm --device nvidia.com/gpu=all --security-opt=label=disable  s
 ```Bash
 conda env list
 ```
-- In our image, we have preloaded three example datasets: kangCrossCell, Papalexi, and Sciplex3-A549. You can easily train the trVAE model on the kangCrossCell dataset with minimal setup, /home/project/Pertb_benchmark/manuscript1 directory contains the scripts related to cellular context generalization scenario, /home/project/Pertb_benchmark/manuscript2 contains the scripts related to perturbation generalization scenario, and /home/project/Pertb_benchmark/manuscript3 contains the scripts related to bioLord-emCell.
+- In our image, we have preloaded three example datasets: KangCrossCell, Papalexi, and Sciplex3-A549. /home/project/Pertb_benchmark/manuscript1 directory contains the scripts related to cellular context generalization scenario, /home/project/Pertb_benchmark/manuscript2 contains the scripts related to perturbation generalization scenario, and /home/project/Pertb_benchmark/manuscript3 contains the scripts related to bioLord-emCell. For example, you can easily train the trVAE model on the kangCrossCell dataset with minimal setup, 
 ```Bash
 conda activate cpa
 cd /home/project/Pertb_benchmark/manuscript1/ood
 python mytrVAE.py
 ```
+- Then, you can calculate the performance with 
 
+```Bash
+conda activate pertpyV7
+export OPENBLAS_NUM_THREADS=20
+export JAX_PLATFORMS=cpu
+python calPerformance.py
+```
+- If you want to run other models on other datasets, just download the datasets from our Figshare and Zenedo, and just change the dataset paremeter in the corresponding scripts. Below, we list the environment needed by the models.
+- 
 
 
 
