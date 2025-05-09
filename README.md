@@ -48,6 +48,7 @@ podman  run -it --rm --device nvidia.com/gpu=all --security-opt=label=disable  s
 ```Bash
 conda env list
 ```
+<img width="683" alt="image" src="https://github.com/user-attachments/assets/c44b2d41-195f-4d22-b77b-cdf6b7f97ba1" />
 
 
 
