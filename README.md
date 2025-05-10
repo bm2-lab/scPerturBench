@@ -46,7 +46,7 @@ podman load -i  scperturbench_v1.tar
 podman  run -it --device nvidia.com/gpu=all --security-opt=label=disable scperturbench:latest
 ```
 
-- Due to the large size of the above Podman image, we created a separate image containing only the `cpa` environment to facilitate testing (scperturbench_cpa.tar.gz). You can use it for testing first,
+- Due to the large size of the above Podman image, we have created a separate image containing only the `cpa` environment to facilitate testing (scperturbench_cpa.tar.gz). You can use it for testing first,
 ```Bash
 gunzip scperturbench_cpa.tar.gz
 podman load -i  scperturbench_cpa.tar
