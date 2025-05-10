@@ -49,7 +49,7 @@ or run with the cpa environment only image,
 ```Bash
 gunzip scperturbench_cpa.tar.gz
 podman load -i  scperturbench_cpa.tar
-podman  run -it --device nvidia.com/gpu=all --security-opt=label=disable scperturbench:latest
+podman  run -it --device nvidia.com/gpu=all --security-opt=label=disable scperturbench_cpa:latest
 ```
 
 - We created nine separate conda environments to accommodate the different dependency requirements of various tools. In the container instantiated from this image, you can list the environments with the following command
