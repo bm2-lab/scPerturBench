@@ -33,17 +33,25 @@ For more details, please refer to our manuscript and [scGPT](https://github.com/
 To facilitate the community in three key ways—(1) reproducing our work more easily, (2) visualizing the benchmark results more intuitively, and (3) more importantly, comparing the performance of newly developed tools with those included in our benchmark—we have taken two major steps:
 
 - **Podman image for full reproducibility:**
-We have packaged all the major benchmark scripts, conda environments, and dependencies used in our study into a Podman image, which is a modern and rootless alternative to Docker. This image allows users to effortlessly reproduce the results presented in our study without manually installing any dependencies. It also comes pre-installed with most of the commonly used tools in the single-cell perturbation analysis field, including pertpy, scanpy, and torch, making it a convenient platform for both end users and tool developers.
+We have packaged all the major benchmark scripts, conda environments, and dependencies used in our study into a Podman image, which is a modern and rootless alternative to Docker. This image allows users to effortlessly reproduce the results presented in our study without manually installing any dependencies. It also comes pre-installed with most of the commonly used tools in the single-cell perturbation analysis field, including pertpy, scanpy, and torch, making it a convenient platform for both end users and tool developers. 
 
 - **Website for result visualization:**
 We have developed a web interface that visualizes the key results of all tools included in our benchmark. The website allows users to explore and download the raw outputs of each method. Furthermore, if a developer evaluates their own tool using the same evaluation metrics defined in our paper, they can easily compare its performance with existing methods. The website is available at: [XXX].
 
 Below, we provide detailed instructions on how to use the Podman image to reproduce our benchmark results.
-- Download Podman images from [Figshare-Podman] or [Zenodo-Podman], then just load and run the image with
+- Download Podman image from [Figshare-Podman] or [Zenodo-Podman], just load and run the image with the following commands. Due to the large size of the Podman image, we created a separate image containing only the `cpa` environment to facilitate testing (scperturbench_cpa.tar.gz). You can use it for testing first.
 ```Bash
+gunzip scperturbench_v1.tar.gz
 podman load -i  scperturbench_v1.tar
 podman  run -it --device nvidia.com/gpu=all --security-opt=label=disable scperturbench:latest
 ```
+or run with the cpa environment only image,
+```Bash
+gunzip scperturbench_cpa.tar.gz
+podman load -i  scperturbench_cpa.tar
+podman  run -it --device nvidia.com/gpu=all --security-opt=label=disable scperturbench:latest
+```
+
 - We created nine separate conda environments to accommodate the different dependency requirements of various tools. In the container instantiated from this image, you can list the environments with the following command
 ```Bash
 conda env list
