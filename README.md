@@ -2,7 +2,7 @@ Single-cell perturbation benchmark (scPerturBench)
 ## Introduction
 Various computational methods have been developed to predict perturbation effects, but despite claims of promising performance, concerns about the true efficacy of these models continue to be raised, particularly when the models are evaluated across diverse unseen cellular contexts and unseen perturbations. To address this, a comprehensive benchmark was conducted for 27 single-cell perturbation response prediction methods, including methods concerning genetic and chemical perturbations; 29 datasets were used, and various evaluation metrics were applied to assess the generalizability of the methods to unseen cellular contexts and perturbations. Recommendations regarding the method limitations, method generalization and method selection were obtained. Finally, an solution that leverages prior knowledge through cellular context embedding to improve the generalizability of models to new cellular contexts is presented.
 ## Workflow
-![Workflow](imgs/fig1.png)
+![Workflow](fig1.png)
 
 
 ## Cellular context generalization scenario
