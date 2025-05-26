@@ -41,14 +41,14 @@ We have developed a web interface that visualizes the key results of all tools i
 Below, we provide detailed instructions on how to use the Podman image to reproduce our benchmark results.
 - Download Podman image from [Onedrive](https://tongjieducn-my.sharepoint.com/:u:/g/personal/1810546_tongji_edu_cn/Ef69nbzFvG1CqseTAwIyq00Bfy_0ZtJv0NuPX6MxHbhg5g?e=jlwd9y),  load and run the image with the following commands,
 ```Bash
-gunzip scperturbench_v1.tar.gz
+gunzip -k scperturbench_v1.tar.gz
 podman load -i  scperturbench_v1.tar
 podman  run -it --device nvidia.com/gpu=all --security-opt=label=disable scperturbench:latest
 ```
 
 - Due to the large size of the above Podman image (40GB), we have created a separate image containing only the `cpa` environment to facilitate testing (scperturbench_cpa.tar.gz, 12GB). You can download it from [Zenedo](https://zenodo.org/records/15374523) or [Figshare](https://figshare.com/articles/dataset/Podman_image_scperturbench_cpa/29002169) for testing first,
 ```Bash
-gunzip scperturbench_cpa.tar.gz
+gunzip -k scperturbench_cpa.tar.gz
 podman load -i  scperturbench_cpa.tar
 podman  run -it --device nvidia.com/gpu=all --security-opt=label=disable scperturbench_cpa:latest
 ```
