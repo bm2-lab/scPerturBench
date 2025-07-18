@@ -39,14 +39,14 @@ We have packaged all the major benchmark scripts, conda environments, and depend
 We have developed a web interface that visualizes the key results of all tools included in our benchmark. The website allows users to explore and download the raw outputs of each method. Furthermore, if a developer evaluates their own tool using the same evaluation metrics defined in our paper, they can easily compare its performance with existing methods. The website is available at: [scPerturBench-reproducibility](https://bm2-lab.github.io/scPerturBench-reproducibility/).
 
 Below, we provide detailed instructions on how to use the Podman image to reproduce our benchmark results.
-- Download Podman image from [Onedrive](https://tongjieducn-my.sharepoint.com/:u:/g/personal/1810546_tongji_edu_cn/Ef69nbzFvG1CqseTAwIyq00Bfy_0ZtJv0NuPX6MxHbhg5g?e=jlwd9y). **Ensure that the MD5 checksums of the downloaded files match ours (https://github.com/bm2-lab/scPerturBench/blob/main/scperturbench_v1_md5sum.xlsx).** Load and run the image with the following commands,
+- Download Podman image from [Onedrive](https://tongjieducn-my.sharepoint.com/:u:/g/personal/1810546_tongji_edu_cn/Ef69nbzFvG1CqseTAwIyq00Bfy_0ZtJv0NuPX6MxHbhg5g?e=jlwd9y). **Ensure that the MD5 checksums of the downloaded files match ours [md5](https://github.com/bm2-lab/scPerturBench/blob/main/scperturbench_v1_md5sum.xlsx).** Load and run the image with the following commands,
 ```Bash
 gunzip -k scperturbench_v1.tar.gz
 podman load -i  scperturbench_v1.tar
 podman  run -it --device nvidia.com/gpu=all --security-opt=label=disable scperturbench:latest
 ```
 
-- Or download Podman image from [Zenodo](https://zenodo.org/records/15904698). Please note that due to file size limitations, we split the compressed file into 10 parts. After downloading all 10 parts, you can merge them using the cat command in Linux. **Ensure that the MD5 checksums of the downloaded files match ours (https://github.com/bm2-lab/scPerturBench/blob/main/scperturbench_v1_md5sum.xlsx).** Load and run the image with the following commands,
+- Or download Podman image from [Zenodo](https://zenodo.org/records/15904698). Please note that due to file size limitations, we split the compressed file into 10 parts. After downloading all 10 parts, you can merge them using the cat command in Linux. **Ensure that the MD5 checksums of the downloaded files match ours [md5](https://github.com/bm2-lab/scPerturBench/blob/main/scperturbench_v1_md5sum.xlsx).** Load and run the image with the following commands,
 ```Bash
 cat split_scperturbench_v1.tar.gz* > scperturbench_v1.tar.gz
 gunzip -k scperturbench_v1.tar.gz
