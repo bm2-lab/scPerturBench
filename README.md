@@ -97,7 +97,7 @@ python calPerformance.py
 
 
 ## Benchmark datasets summary
-All datasets analyzed in our study are listed in the [Workflow](imgs/fig1.png). We have uploaded all benchmark datasets to Figshare and Zenodo, which can be obtained from [Figshare-Cellular](https://doi.org/10.6084/m9.figshare.28143422), [Figshare-Perturbation](https://doi.org/10.6084/m9.figshare.28147883), [Zenodo-Cellular](https://doi.org/10.5281/zenodo.14607156) and [Zenodo-perturbation](https://10.5281/zenodo.14638779).
+All datasets analyzed in our study are listed in the [Workflow](imgs/fig1.png). We have uploaded all benchmark datasets to Figshare and Zenodo, which can be obtained from [Figshare-Cellular](https://doi.org/10.6084/m9.figshare.28143422), [Figshare-Perturbation](https://doi.org/10.6084/m9.figshare.28147883), [Zenodo-Cellular](https://doi.org/10.5281/zenodo.14607156) and [Zenodo-perturbation](https://zenodo.org/records/14638780).
 
 ## Benchmark methods
 All benchmark methods analyzed in our study are listed below. Details of the setting were available in our manuscript. 
