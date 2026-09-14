@@ -24,7 +24,7 @@ def generatePairedSample(adata, perturbation):
         annList_control.append(control_cells)
     annList_Pertb = ad.concat(annList_Pertb)
     annList_control = ad.concat(annList_control)
-    return annList_Pertb, annList_control
+    return annList_control, annList_Pertb
 
 def Kang_OutSample(DataSet, outSample):
     basePath = f'/home//project/Pertb_benchmark/DataSet/{DataSet}/inSample/hvg5000/baseReg/'
