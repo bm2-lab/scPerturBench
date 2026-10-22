@@ -102,7 +102,7 @@ All datasets analyzed in our study are listed in the [Workflow](imgs/fig1.png). 
 
 ## Notice on CPA results in the genetic perturbation benchmark
 
-The previously released CPA results should not be used to assess CPA’s performance. The original prediction procedure used test cells as input, so the reported scores reflected reconstruction rather than counterfactual prediction from control cells. [https://github.com/bm2-lab/scPerturBench/issues/1] A subsequent revision also replaced the test cells in the AnnData object before extracting the observed perturbed cells used as ground truth. Both issues make the affected CPA results unreliable.
+The previously released CPA results should not be used to assess CPA’s performance. The original prediction procedure used test cells as input, so the reported scores reflected reconstruction rather than counterfactual prediction from control cells. [https://github.com/bm2-lab/scPerturBench/issues/1]  A subsequent revision also replaced the test cells in the AnnData object before extracting the observed perturbed cells used as ground truth. Both issues make the affected CPA results unreliable.
 
 We have removed CPA entries from the latest four genetic perturbation performance summary files. The CPA script currently available on GitHub has been corrected, and researchers may use it to run CPA and generate their own results. We will rerun CPA with a corrected prediction and evaluation procedure, then release updated results. We thank the researchers who identified and reported these issues.
 
