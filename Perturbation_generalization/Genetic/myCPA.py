@@ -146,32 +146,51 @@ def clean_condition(condition):
     return condition.replace('+ctrl', '').replace('ctrl+', '').strip()
 
 def getPredict(DataSet, seed):
-    dirName = '/home/project/Pertb_benchmark/DataSet2/{}/hvg5000/CPA'.format(DataSet)
+    dirName = (
+        '/home/project/Pertb_benchmark/DataSet2/'
+        '{}/hvg5000/CPA'.format(DataSet)
+    )
     os.chdir(dirName)
 
     modeldir = 'savedModels{}'.format(seed)
     adata = sc.read_h5ad('{}/cpa.h5ad'.format(modeldir))
-    model = cpa.CPA.load(modeldir, adata = adata, use_gpu = True)
+    model = cpa.CPA.load(modeldir, adata=adata, use_gpu=True)
 
+    test_mask = (adata.obs['split'] == 'test').to_numpy()
+    ctrl_mask = (adata.obs['perturbation'] == 'control').to_numpy()
 
-    a = adata[adata.obs['split'] == 'test'].shape[0]
-    tmp = adata[adata.obs['perturbation'] == 'control']
-    tmp = tmp.to_df().sample(n=a, random_state=42, replace=True)
-    adata[adata.obs['split'] == 'test'].X = tmp.values
-
-    model.predict(adata, batch_size=2048)
-    adata_pred = adata[adata.obs['split'] == 'test'].copy()
-    adata_pred.X = adata_pred.obsm['CPA_pred']
-    adata_pred.obs['Expcategory'] = 'imputed'
-
-    adata_ctrl = adata[adata.obs['perturbation'] == 'control']
-    adata_ctrl.obs['Expcategory'] = 'control'
-
-    adata_stimulated = adata[adata.obs['split'] == 'test'].copy()
+    # 在替换输入前保存真实观测数据。
+    adata_stimulated = adata[test_mask].copy()
     adata_stimulated.obs['Expcategory'] = 'stimulated'
 
-    adata_fi = ad.concat([adata_ctrl, adata_pred, adata_stimulated])
-    adata_fi.write('savedModels{}/result.h5ad'.format(seed))
+    adata_ctrl = adata[ctrl_mask].copy()
+    adata_ctrl.obs['Expcategory'] = 'control'
+
+    if test_mask.sum() == 0:
+        raise ValueError('No test cells found.')
+    if adata_ctrl.n_obs == 0:
+        raise ValueError('No control cells found.')
+
+    tmp = adata_ctrl.to_df().sample(
+        n=int(test_mask.sum()),
+        random_state=42,
+        replace=True,
+    )
+
+    # 只替换预测输入，保留测试细胞的扰动标签等元信息。
+    adata.X[test_mask, :] = tmp.values
+
+    model.predict(adata, batch_size=2048)
+
+    adata_pred = adata[test_mask].copy()
+    adata_pred.X = adata_pred.obsm['CPA_pred'].copy()
+    adata_pred.obs['Expcategory'] = 'imputed'
+
+    adata_fi = ad.concat(
+        [adata_ctrl, adata_pred, adata_stimulated],
+        index_unique='-',
+    )
+    adata_fi.write('{}/result.h5ad'.format(modeldir))
 
 
 SinglePertDataSets = ['Adamson', "Frangieh", "TianActivation", "TianInhibition", "Replogle_exp7", "Replogle_exp8", "Papalexi", "Replogle_RPE1essential", "Replogle_K562essential"]
