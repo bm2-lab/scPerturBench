@@ -159,17 +159,11 @@ def getPredict(DataSet, seed):
     test_mask = (adata.obs['split'] == 'test').to_numpy()
     ctrl_mask = (adata.obs['perturbation'] == 'control').to_numpy()
 
-    # 在替换输入前保存真实观测数据。
     adata_stimulated = adata[test_mask].copy()
     adata_stimulated.obs['Expcategory'] = 'stimulated'
 
     adata_ctrl = adata[ctrl_mask].copy()
     adata_ctrl.obs['Expcategory'] = 'control'
-
-    if test_mask.sum() == 0:
-        raise ValueError('No test cells found.')
-    if adata_ctrl.n_obs == 0:
-        raise ValueError('No control cells found.')
 
     tmp = adata_ctrl.to_df().sample(
         n=int(test_mask.sum()),
@@ -177,7 +171,6 @@ def getPredict(DataSet, seed):
         replace=True,
     )
 
-    # 只替换预测输入，保留测试细胞的扰动标签等元信息。
     adata.X[test_mask, :] = tmp.values
 
     model.predict(adata, batch_size=2048)
